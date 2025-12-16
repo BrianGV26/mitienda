@@ -17,15 +17,7 @@ let carrito = [];
 function cargarCatalogo() {
     const contenedor = document.getElementById("catalogo");
     contenedor.innerHTML = "";
-
-    productos.forEach(producto => {
-        contenedor.innerHTML += `
-            <div class="producto">
-                <img src="${producto.imagen}">
-                <h3>${producto.nombre}</h3>
-                <p>Precio: S/ ${producto.precio}</p>
-                <button onclick="agregarProducto(${producto.id})">
-                    Agregar al carrito
+ al carrito
                 </button>
             </div>
         `;
@@ -121,3 +113,4 @@ function abrirCarrito() {
 function cerrarCarrito() {
     document.getElementById("modalCarrito").style.display = "none";
 }
+
