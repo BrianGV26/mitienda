@@ -1,6 +1,3 @@
-// -----------------------------
-// Arreglo de productos
-// -----------------------------
 const productos = [
     { id: 1, nombre: "Audífonos", precio: 60, imagen: "imagenes/p1.jpg" },
     { id: 2, nombre: "Teclado", precio: 120, imagen: "imagenes/p2.jpg" },
@@ -11,13 +8,18 @@ const productos = [
 
 let carrito = [];
 
-// -----------------------------
-// Mostrar catálogo
-// -----------------------------
 function cargarCatalogo() {
     const contenedor = document.getElementById("catalogo");
     contenedor.innerHTML = "";
- al carrito
+
+    productos.forEach(producto => {
+        contenedor.innerHTML += `
+            <div class="producto">
+                <img src="${producto.imagen}">
+                <h3>${producto.nombre}</h3>
+                <p>Precio: S/ ${producto.precio}</p>
+                <button onclick="agregarProducto(${producto.id})">
+                    Agregar al carrito
                 </button>
             </div>
         `;
@@ -26,9 +28,6 @@ function cargarCatalogo() {
 
 cargarCatalogo();
 
-// -----------------------------
-// Agregar producto al carrito
-// -----------------------------
 function agregarProducto(id) {
     const producto = productos.find(p => p.id === id);
     const existe = carrito.find(p => p.id === id);
@@ -45,9 +44,6 @@ function agregarProducto(id) {
     actualizarCarrito();
 }
 
-// -----------------------------
-// Actualizar carrito
-// -----------------------------
 function actualizarCarrito() {
     document.getElementById("cantidadCarrito").textContent = carrito.length;
 
@@ -72,17 +68,11 @@ function actualizarCarrito() {
     document.getElementById("totalPagar").textContent = total.toFixed(2);
 }
 
-// -----------------------------
-// Eliminar producto
-// -----------------------------
 function eliminarProducto(index) {
     carrito.splice(index, 1);
     actualizarCarrito();
 }
 
-// -----------------------------
-// Pago
-// -----------------------------
 function realizarPago() {
     const metodo = document.getElementById("metodoPago").value;
 
@@ -103,9 +93,6 @@ function realizarPago() {
     cerrarCarrito();
 }
 
-// -----------------------------
-// Control del modal
-// -----------------------------
 function abrirCarrito() {
     document.getElementById("modalCarrito").style.display = "block";
 }
@@ -113,4 +100,5 @@ function abrirCarrito() {
 function cerrarCarrito() {
     document.getElementById("modalCarrito").style.display = "none";
 }
+
 
